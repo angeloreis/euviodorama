@@ -7,7 +7,7 @@ import {
   Heading,
   Text,
   Container,
-  Flex,
+  Flex
 } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
@@ -34,8 +34,8 @@ export const ImageSlider = () => {
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
-  const top = useBreakpointValue({ base: '90%', md: '50%' });
-  const side = useBreakpointValue({ base: '30%', md: '40px' });
+  const top = useBreakpointValue({ base: '20%', md: '50%' });
+  const side = useBreakpointValue({ base: '10%', md: '30px' });
 
   // This list contains all the data for carousels
   // This can be static or loaded from a server
@@ -78,23 +78,11 @@ export const ImageSlider = () => {
   ];
 
   return (
+    <Flex height={['235px','680px' ,'768px']}>
     <Box
-      position={'relative'}
-      height={'768px'}
-      width={'full'}
-      overflow={'hidden'}>
-      {/* CSS files for react-slick */}
-      <link
-        rel="stylesheet"
-        type="text/css"
-        charSet="UTF-8"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      />
+     height={['235px','680px' ,'768px']}
+      width='full'
+      overflow='hidden'>
       {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
@@ -105,7 +93,7 @@ export const ImageSlider = () => {
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickPrev()}>
-        <BiLeftArrowAlt size="40px" />
+        <BiLeftArrowAlt size="40px" color={'orange.400'}/>
       </IconButton>
       {/* Right Icon */}
       <IconButton
@@ -117,15 +105,14 @@ export const ImageSlider = () => {
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickNext()}>
-        <BiRightArrowAlt size="40px" />
+        <BiRightArrowAlt size="40px"  color={'orange.400'}/>
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
           <Flex
             key={index}
-            height="768px"
-            position="relative"
+            height={['235px','680px' ,'768px']}
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
@@ -151,5 +138,6 @@ export const ImageSlider = () => {
         ))}
       </Slider>
     </Box>
+    </Flex>
   );
 }
