@@ -16,9 +16,9 @@ export default function Home({ maintenance }: HomeProps) {
 
   return (
     <Flex direction="column" width="100vw" background='black' height='100vh'>
-        <Header />
-        <ImageSlider />
-        <HowStarted />     
+      <Header />
+      <ImageSlider />
+      <HowStarted />
     </Flex>
   )
 }
