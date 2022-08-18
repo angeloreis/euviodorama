@@ -87,11 +87,13 @@ export const ImageSlider = () => {
       <IconButton
         aria-label="left-arrow"
         variant="ghost"
+        background="white"
         position="absolute"
         left={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
+        borderRadius='20px'
         onClick={() => slider?.slickPrev()}>
         <BiLeftArrowAlt size="40px" color={'orange.400'}/>
       </IconButton>
@@ -99,11 +101,13 @@ export const ImageSlider = () => {
       <IconButton
         aria-label="right-arrow"
         variant="ghost"
+        background="white"
         position="absolute"
         right={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
+        borderRadius='20px'
         onClick={() => slider?.slickNext()}>
         <BiRightArrowAlt size="40px"  color={'orange.400'}/>
       </IconButton>
