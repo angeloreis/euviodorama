@@ -11,16 +11,18 @@ import {
     DrawerHeader,
     DrawerBody,
     Divider,
-    Icon
+    Icon,
+    useBreakpointValue
   } from '@chakra-ui/react'
 import { FaBars } from 'react-icons/fa'
 import { MenuItem } from 'components/Menu/MenuItem'
-  
+
 export const Header = () => {
     const [isMobileScreen] = useMediaQuery('(max-width: 768px)')
+    const logoOfSite = useBreakpointValue({ base: 'img/logo-mobile.svg', md: 'img/logo-mobile.svg', lg:'img/logo.svg' });
 
     const {isOpen, onOpen, onClose} = useDisclosure()
-    
+
     return (
       <Flex
         direction="row"
@@ -31,7 +33,7 @@ export const Header = () => {
         paddingRight='16px'
       >
         <Image
-          src={isMobileScreen ? 'img/logo-mobile.svg' : 'img/logo.svg'}
+          src={logoOfSite}
           alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
           width={isMobileScreen ? '64px' : '512px'}
           margin="5px 0"
@@ -77,8 +79,7 @@ export const Header = () => {
                 <MenuItem url="#eventos" text='Eventos'  isMobile={isMobileScreen}/>
                 <MenuItem url="#contato" text='Contato'  isMobile={isMobileScreen}/>
         </Flex>)}
-        
+
       </Flex>
     )
 }
-  
