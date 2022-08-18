@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 // import { BlogSection } from 'components/BlogSection'
 import { Header } from 'components/Header'
-import { HowStarted } from 'components/HowStarted'
-import { ImageSlider } from 'components/ImageSlider'
+import { HowStarted } from 'components/Sections/HowStarted'
+import { ImageSlider } from 'components/Sections/ImageSlider'
 import { Main } from 'components/Main'
 
 interface HomeProps {

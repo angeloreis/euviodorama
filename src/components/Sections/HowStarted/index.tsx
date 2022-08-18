@@ -1,8 +1,6 @@
-import { Flex, Heading, Image, Text, useMediaQuery } from "@chakra-ui/react"
+import { Flex, Heading, Image, Text } from "@chakra-ui/react"
 
 export const HowStarted = () => {
-  const [isMobileScreen] = useMediaQuery('(max-width: 425px)')
-
   return (
     <Flex
       id="como-comecou"
@@ -10,7 +8,7 @@ export const HowStarted = () => {
       alignItems="center"
       justifyContent="center"
       background="orange.400"
-      padding={isMobileScreen ? "none" : "32px 16px"}>
+      padding={["none","32px 16px"]}>
 
       <Flex
         padding="8px 16px"

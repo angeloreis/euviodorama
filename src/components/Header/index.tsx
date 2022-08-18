@@ -12,14 +12,15 @@ import {
   DrawerBody,
   Divider,
   Icon,
-  useBreakpointValue
+  useBreakpointValue,
+  Heading
 } from '@chakra-ui/react'
 import { FaBars } from 'react-icons/fa'
-import { MenuItem } from 'components/Menu/MenuItem'
+import { MenuItem } from 'components/shared/MenuItem'
 
 export const Header = () => {
   const [isMobileScreen] = useMediaQuery('(max-width: 768px)')
-  const logoOfSite = useBreakpointValue({ base: 'img/logo-mobile.svg', md: 'img/logo-mobile.svg', lg: 'img/logo.svg' });
+  const logoOfSite = useBreakpointValue({ base: 'img/mytv.svg', md: 'img/logo-mobile.svg', lg: 'img/logo.svg' });
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -39,6 +40,13 @@ export const Header = () => {
         margin="5px 0"
         cursor="pointer"
       />
+      {isMobileScreen && (
+      <Heading
+       as="h2"
+       fontSize="1.4rem"
+       color="white">
+        EU VI O DORAMA
+      </Heading>)}
       {isMobileScreen ? (
         <>
           {!isOpen ? (
