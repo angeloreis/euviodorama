@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt-BR">
         <Head title="Eu vi o Dorama">
+          <title>Eu Vi o dorama</title>
           <link rel="shortcut icon" href="/img/favicon.png" />
           <link rel="apple-touch-icon" href="/img/favicon.png" />
           <link rel="manifest" href="/manifest.json" />
