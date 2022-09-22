@@ -79,8 +79,8 @@ export default function Blog() {
               </Box>
             </Box>
             <Pagination
-                totalCountOfRegisters={10}
-                currentPage={1}
+                totalCountOfRegisters={58}
+                currentPage={page}
                 onPageChange={setPage}
               />
           </Flex>
