@@ -1,8 +1,10 @@
 import { Flex, Box, Heading, Text, Button, Divider, Image } from "@chakra-ui/react";
 import { Pagination } from "components/Pagination";
+import { useState } from "react";
 import { FaWhatsapp, FaTelegram, FaTwitterSquare, FaInstagram } from "react-icons/fa";
 
 export default function Blog() {
+  const [page, setPage] = useState(1);
   return (
     <Flex
           id="app-blog"
@@ -76,7 +78,11 @@ export default function Blog() {
                 </Flex>
               </Box>
             </Box>
-            <Pagination />
+            <Pagination
+                totalCountOfRegisters={10}
+                currentPage={1}
+                onPageChange={setPage}
+              />
           </Flex>
           <Flex maxWidth="430px" width="100%" marginLeft="16px" marginTop="16px" marginBottom="16px" padding="16px">
             <Box>
