@@ -26,27 +26,30 @@ export const Header = () => {
 
   return (
     <Flex
+      as="header"
       direction="row"
       alignItems="center"
       justifyContent="space-between"
-      width="100vw"
-      paddingLeft='16px'
-      paddingRight='16px'
+      paddingX="24px"
+      minHeight="97px"
+      width="full"
     >
-      <Image
-        src={logoOfSite}
-        alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
-        width={isMobileScreen ? '64px' : '512px'}
-        margin="5px 0"
-        cursor="pointer"
-      />
-      {isMobileScreen && (
-      <Heading
-       as="h2"
-       fontSize="1.4rem"
-       color="white">
-        EU VI O DORAMA
-      </Heading>)}
+      {!isMobileScreen ? (
+        <Heading
+          fontSize="1.6rem"
+          color="white"
+          margin="5px 0">
+          EU VI O DORAMA
+        </Heading>) : (
+        <Image
+          src={logoOfSite}
+          alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
+          width='25%'
+          margin="5px 0"
+          cursor="pointer"
+        />
+      )}
+
       {isMobileScreen ? (
         <>
           {!isOpen ? (
@@ -65,28 +68,26 @@ export const Header = () => {
               <DrawerHeader color="white">NAVEGAÇÃO</DrawerHeader>
               <DrawerBody>
                 <Flex direction='column' >
-                  <MenuItem url="#" text='Home' />
+                  <MenuItem url="/" text='Home' />
                   <Divider orientation='horizontal' colorScheme='black' />
-                  <MenuItem url="#como-comecou" text='Como começou' />
-                  <Divider orientation='horizontal' />
-                  <MenuItem url="#blog" text='Blog' />
-                  <Divider orientation='horizontal' />
-                  <MenuItem url="#eventos" text='Eventos' />
-                  <Divider orientation='horizontal' />
-                  <MenuItem url="#contato" text='Contato' />
+                  <MenuItem url="/blog" text='Blog' />
+                  <Divider orientation='horizontal' colorScheme='black' />
+                  <MenuItem url="/membership" text='Assine' />
+                  <Divider orientation='horizontal' colorScheme='black' />
+                  <MenuItem url="/contato" text='Contato' />
                 </Flex>
               </DrawerBody>
 
             </DrawerContent>
           </Drawer>
         </>
-      ) : (<Flex color="white">
-        <MenuItem url="#" text='Home' fromDesktop />
-        <MenuItem url="#como-comecou" text='Como começou' fromDesktop />
-        <MenuItem url="#blog" text='Blog' fromDesktop />
-        <MenuItem url="#eventos" text='Eventos' fromDesktop />
-        <MenuItem url="#contato" text='Contato' fromDesktop />
-      </Flex>)}
+      ) : (
+        <Flex color="white" paddingRight="16px">
+          <MenuItem url="/" text='Home' fromDesktop />
+          <MenuItem url="/blog" text='Blog' fromDesktop />
+          <MenuItem url="/membership" text='Assine' fromDesktop />
+          <MenuItem url="/contato" text='Contato' fromDesktop />
+        </Flex>)}
 
     </Flex>
   )
