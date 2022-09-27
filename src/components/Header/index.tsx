@@ -15,7 +15,7 @@ import {
   useBreakpointValue,
   Heading
 } from '@chakra-ui/react'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaUserCircle } from 'react-icons/fa'
 import { MenuItem } from 'components/shared/MenuItem'
 
 export const Header = () => {
@@ -75,6 +75,9 @@ export const Header = () => {
                   <MenuItem url="/membership" text='Assine' />
                   <Divider orientation='horizontal' colorScheme='black' />
                   <MenuItem url="/contato" text='Contato' />
+                  <Divider orientation='horizontal' colorScheme='black' />
+                  <MenuItem url="/login" text='Login' />
+
                 </Flex>
               </DrawerBody>
 
@@ -82,11 +85,14 @@ export const Header = () => {
           </Drawer>
         </>
       ) : (
-        <Flex color="white" paddingRight="16px">
+        <Flex color="white" paddingRight="16px" align="center">
           <MenuItem url="/" text='Home' fromDesktop />
           <MenuItem url="/blog" text='Blog' fromDesktop />
           <MenuItem url="/membership" text='Assine' fromDesktop />
           <MenuItem url="/contato" text='Contato' fromDesktop />
+          <Button background="orange.600" leftIcon={<FaUserCircle />} _hover={{
+            background:"orange.800"
+          }}>Login</Button>
         </Flex>)}
 
     </Flex>
