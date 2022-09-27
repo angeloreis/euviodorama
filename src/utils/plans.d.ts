@@ -1,5 +1,3 @@
-import { Timestamp } from "firebase/firestore/lite"
-
 export interface IPlan {
   name: string
   description: string

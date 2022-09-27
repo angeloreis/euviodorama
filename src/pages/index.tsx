@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import { getPlanRecommend } from 'services/plans'
 import { formattedPrice } from 'utils/formatted'
 

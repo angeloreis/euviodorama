@@ -1,6 +1,5 @@
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore/lite"
 import { db } from "utils/firebase"
-import { formattedPrice } from "utils/formatted";
 import { IPlan } from "utils/plans";
 
 export async function getPlans() {
