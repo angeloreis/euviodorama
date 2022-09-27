@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Flex, Box, Heading, Text, Button, Divider, Image } from "@chakra-ui/react";
 import { Pagination } from "components/Pagination";
-import { useState } from "react";
 import { FaWhatsapp, FaTelegram, FaTwitterSquare, FaInstagram } from "react-icons/fa";
 
 export default function Blog() {
