@@ -15,8 +15,10 @@ import {
   useBreakpointValue,
   Heading
 } from '@chakra-ui/react'
-import { FaBars, FaUserCircle } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
 import { MenuItem } from 'components/shared/MenuItem'
+import { Login } from 'components/Login'
+import Link from 'next/link'
 
 export const Header = () => {
   const [isMobileScreen] = useMediaQuery('(max-width: 768px)')
@@ -34,21 +36,23 @@ export const Header = () => {
       minHeight="97px"
       width="full"
     >
-      {!isMobileScreen ? (
-        <Heading
-          fontSize="1.6rem"
-          color="white"
-          margin="5px 0">
-          EU VI O DORAMA
-        </Heading>) : (
-        <Image
-          src={logoOfSite}
-          alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
-          width='25%'
-          margin="5px 0"
-          cursor="pointer"
-        />
-      )}
+      <Link href="/">
+        {!isMobileScreen ? (
+          <Heading
+            fontSize="1.6rem"
+            color="white"
+            margin="5px 0">
+            EU VI O DORAMA
+          </Heading>) : (
+          <Image
+            src={logoOfSite}
+            alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
+            width='25%'
+            margin="5px 0"
+            cursor="pointer"
+          />
+        )}
+      </Link>
 
       {isMobileScreen ? (
         <>
@@ -71,13 +75,12 @@ export const Header = () => {
                   <MenuItem url="/" text='Home' />
                   <Divider orientation='horizontal' colorScheme='black' />
                   <MenuItem url="/blog" text='Blog' />
-                  <Divider orientation='horizontal' colorScheme='black' />
-                  <MenuItem url="/membership" text='Assine' />
+                  {/* <Divider orientation='horizontal' colorScheme='black' />
+                  <MenuItem url="/membership" text='Assine' /> */}
                   <Divider orientation='horizontal' colorScheme='black' />
                   <MenuItem url="/contato" text='Contato' />
                   <Divider orientation='horizontal' colorScheme='black' />
-                  <MenuItem url="/login" text='Login' />
-
+                  <Login />
                 </Flex>
               </DrawerBody>
 
@@ -88,11 +91,9 @@ export const Header = () => {
         <Flex color="white" paddingRight="16px" align="center">
           <MenuItem url="/" text='Home' fromDesktop />
           <MenuItem url="/blog" text='Blog' fromDesktop />
-          <MenuItem url="/membership" text='Assine' fromDesktop />
+          {/* <MenuItem url="/membership" text='Assine' fromDesktop /> */}
           <MenuItem url="/contato" text='Contato' fromDesktop />
-          <Button background="orange.600" leftIcon={<FaUserCircle />} _hover={{
-            background:"orange.800"
-          }}>Login</Button>
+          <Login />
         </Flex>)}
 
     </Flex>
