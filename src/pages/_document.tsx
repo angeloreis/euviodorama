@@ -7,7 +7,6 @@ export default class MyDocument extends Document {
         <Head title="Eu Vi o dorama">
           <link rel="shortcut icon" href="/img/favicon.png" />
           <link rel="apple-touch-icon" href="/img/favicon.png" />
-          <link rel="manifest" href="/manifest.json" />
           <meta name="theme-color" content="#ff8000" />
           <meta
             name="description"
