@@ -15,7 +15,6 @@ interface BlogProps {
 }
 
 export default function Blog({ posts }: BlogProps) {
-
   return (
     <Flex
       id="app-blog"
@@ -29,7 +28,7 @@ export default function Blog({ posts }: BlogProps) {
       <Flex flexDir="column" width="100%" marginLeft="6px" marginTop="16px" marginBottom="16px" padding="16px">
         {posts && posts.map(({ slug, title, heading, imageFeature }, index) => (
           <>
-            <ItemPost index={index} slug={slug} title={title} heading={heading} url={imageFeature.url} />
+            <ItemPost key={index} slug={slug} title={title} heading={heading} url={imageFeature.url} />
             <Divider variant="solid" marginY='16px' />
           </>
         ))}
@@ -38,7 +37,7 @@ export default function Blog({ posts }: BlogProps) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { posts } = await client.request(GET_POSTS)
 
   return {

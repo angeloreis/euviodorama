@@ -3,15 +3,14 @@ import Link from "next/link";
 
 interface ItemPostProps {
   slug: string
-  index: number | string
   title: string
   heading: string
   url: string
 }
 
-export function ItemPost({ slug, index, url, title, heading }: ItemPostProps) {
+export function ItemPost({ slug, url, title, heading }: ItemPostProps) {
   return (
-    <Flex flexDir="column" key={index}>
+    <Flex flexDir="column">
       <Link href={`/blog/${slug}`}>
         <a key={slug}>
           <Flex flexDir={['column', 'row']} alignItems={['center', 'flex-start']}>
