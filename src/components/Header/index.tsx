@@ -1,6 +1,5 @@
 import {
   Flex,
-  Image,
   useMediaQuery,
   Button,
   useDisclosure,
@@ -12,7 +11,6 @@ import {
   DrawerBody,
   Divider,
   Icon,
-  useBreakpointValue,
   Heading
 } from '@chakra-ui/react'
 import { FaBars } from 'react-icons/fa'
@@ -22,7 +20,6 @@ import Link from 'next/link'
 
 export const Header = () => {
   const [isMobileScreen] = useMediaQuery('(max-width: 768px)')
-  const logoOfSite = useBreakpointValue({ base: 'img/mytv.svg', md: 'img/logo-mobile.svg', lg: 'img/logo.svg' });
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -37,21 +34,13 @@ export const Header = () => {
       width="full"
     >
       <Link href="/">
-        {!isMobileScreen ? (
           <Heading
             fontSize="1.6rem"
             color="white"
-            margin="5px 0">
-            EU VI O DORAMA
-          </Heading>) : (
-          <Image
-            src={logoOfSite}
-            alt="imagem de uma televisão retro, com linha pretas como borda e escrito em cima de forma curva: Eu vi o dorama"
-            width='25%'
             margin="5px 0"
-            cursor="pointer"
-          />
-        )}
+            cursor={'pointer'}>
+            EU VI O DORAMA
+          </Heading>
       </Link>
 
       {isMobileScreen ? (
@@ -75,8 +64,6 @@ export const Header = () => {
                   <MenuItem url="/" text='Home' />
                   <Divider orientation='horizontal' colorScheme='black' />
                   <MenuItem url="/blog" text='Blog' />
-                  {/* <Divider orientation='horizontal' colorScheme='black' />
-                  <MenuItem url="/membership" text='Assine' /> */}
                   <Divider orientation='horizontal' colorScheme='black' />
                   <MenuItem url="/contato" text='Contato' />
                   <Divider orientation='horizontal' colorScheme='black' />
@@ -91,7 +78,6 @@ export const Header = () => {
         <Flex color="white" paddingRight="16px" align="center">
           <MenuItem url="/" text='Home' fromDesktop />
           <MenuItem url="/blog" text='Blog' fromDesktop />
-          {/* <MenuItem url="/membership" text='Assine' fromDesktop /> */}
           <MenuItem url="/contato" text='Contato' fromDesktop />
           <Login />
         </Flex>)}

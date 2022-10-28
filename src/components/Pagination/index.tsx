@@ -1,4 +1,4 @@
-import { Box, Stack, HStack, Text } from "@chakra-ui/react";
+import { Stack, HStack, Text } from "@chakra-ui/react";
 import { PaginationItem } from "./PaginationItem";
 
 interface PaginationProps {
@@ -45,9 +45,6 @@ export function Pagination({
       align="center"
       spacing="6"
     >
-      <Box>
-        <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
-      </Box>
       <HStack spacing="2">
         {currentPage > 1 + siblingsCount && (
           <>
