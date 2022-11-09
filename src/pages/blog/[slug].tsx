@@ -1,5 +1,5 @@
 import { Flex, Button } from "@chakra-ui/react";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowCircleLeft } from "react-icons/fa";
 import client from "graphql/client";
 import { GET_POST_BY_SLUG } from "graphql/queries";
 import { GetServerSideProps } from "next";
@@ -27,9 +27,9 @@ interface IPost {
 export default function Post({ posts }: IPost) {
   return (
     <main className={styles.container}>
-      <Link href={'/blog'}>
-        <Button background='red' leftIcon={<FaArrowLeft/>}>Voltar</Button>
-      </Link>
+      <Link href="/blog">
+            <Button bg="orange.600" leftIcon={<FaArrowCircleLeft />} _hover={{ bg: "orange.800" }}>Voltar</Button>
+          </Link>
       <article className={styles.post}>
         <h1>{posts.title}</h1>
         <Flex>
