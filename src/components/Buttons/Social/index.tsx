@@ -13,29 +13,30 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
   const titleToShare = encodeURIComponent(title)
   const newLineUrl = "%0A"
   const siteName = encodeURIComponent("Eu vi o Dorama - ")
+  const sharedUrl = formattedBlogUrl(slug)
   const textToShare = `${siteName}${titleToShare}`
 
-  const getSocialLinkWhatsApp = (slug: string) => {
-    return `https://api.whatsapp.com/send/?text=${textToShare}${newLineUrl}${formattedBlogUrl(slug)}&type=custom_url&app_absent=0`
+  const getSocialLinkWhatsApp = () => {
+    return `https://api.whatsapp.com/send/?text=${textToShare}${newLineUrl}${sharedUrl}&type=custom_url&app_absent=0`
   }
 
-  const getSocialLinkTelegram = (slug: string) => {
-    return `https://t.me/share/url?url=${formattedBlogUrl(slug)}&text=${textToShare}`
+  const getSocialLinkTelegram = () => {
+    return `https://t.me/share/url?url=${sharedUrl}&text=${textToShare}`
   }
 
-  const getSocialLinkTwitter = (slug: string) => {
-    return `https://twitter.com/intent/tweet?text=${textToShare}&via=andpamplona&url=${formattedBlogUrl(slug)}`
+  const getSocialLinkTwitter = () => {
+    return `https://twitter.com/intent/tweet?text=${textToShare}&via=andpamplona&url=${sharedUrl}`
   }
 
-  const getSocialLinkFacebook = (slug: string) => {
-    return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(formattedBlogUrl(slug))}`
+  const getSocialLinkFacebook = () => {
+    return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(sharedUrl)}`
   }
 
   return (
     <Box paddingY="6px">
       <Text>Compatilhar:</Text>
       <Flex gap="5px" flexDir={['column', 'row']}>
-        <Link href={getSocialLinkWhatsApp(slug)}>
+        <Link href={getSocialLinkWhatsApp()} target="_blank">
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaWhatsapp />}
@@ -45,7 +46,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "whatsapp.800"
             }}>WhatsApp</Button>
         </Link>
-        <Link href={getSocialLinkTelegram(slug)}>
+        <Link href={getSocialLinkTelegram()} target="_blank">
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaTelegram />}
@@ -55,7 +56,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "telegram.800"
             }}>Telegram</Button>
         </Link>
-        <Link href={getSocialLinkTwitter(slug)}>
+        <Link href={getSocialLinkTwitter()} target="_blank">
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaTwitter />}
@@ -65,7 +66,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "twitter.800"
             }}>Twitter</Button>
         </Link>
-        <Link href={getSocialLinkFacebook(slug)}>
+        <Link href={getSocialLinkFacebook()} target="_blank">
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaFacebook />}
