@@ -1,20 +1,10 @@
 import { Flex, Heading, Image, Text } from '@chakra-ui/react'
-// import { Stripe } from '@stripe/stripe-js'
-// import { SubscriptionButton } from 'components/Subscription'
-// import { getPlanRecommend } from 'services/plans'
-// import { getStripeJs } from 'services/stripe-js'
-// import { formattedPrice } from 'utils/formatted'
 
-// interface HomeProps {
-//   priceFormatted: string
-//   stripe: Stripe
-// }
-
-// export default function Home({ priceFormatted, stripe }: HomeProps) {
 export default function Home() {
   return (
     <Flex
       as="main"
+      id="app-home"
       display="flex"
       alignItems="center"
       justifyContent="space-between"
@@ -42,16 +32,3 @@ export default function Home() {
     </Flex>
   )
 }
-
-
-// export async function getServerSideProps() {
-//   const plan = await getPlanRecommend()
-//   const stripe = await getStripeJs()
-//   const priceFormatted = plan && formattedPrice(plan.price) || ''
-//   return {
-//     props: {
-//       priceFormatted,
-//       stripe
-//     }
-//   }
-// }
