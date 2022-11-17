@@ -16,11 +16,11 @@ export function ItemPost({ slug, url, title, heading }: ItemPostProps) {
           <Flex flexDir={['column', 'row']} alignItems={['center', 'flex-start']}>
             <Image
               src={url}
-              h="128px"
-              w="128px"
-              borderRadius="25px"
+              h={["100%","245px"]}
+              w={["100%","389px"]}
+              borderRadius={["8px","25px"]}
             />
-            <Flex flexDir="column" paddingLeft="6px">
+            <Flex flexDir="column" paddingLeft={["6px","12px"]} paddingTop={["6px", "none"]}>
               <Heading size="lg">{title}</Heading>
               <Text>{heading}</Text>
             </Flex>
