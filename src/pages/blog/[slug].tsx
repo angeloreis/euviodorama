@@ -1,18 +1,27 @@
-import { Flex, Button } from "@chakra-ui/react";
-import { FaArrowCircleLeft } from "react-icons/fa";
-import client from "graphql/client";
-import { GET_POST_BY_SLUG } from "graphql/queries";
 import { GetServerSideProps } from "next";
-import { ParsedUrlQuery } from "querystring";
-import styles from './post.module.scss'
+import Head from "next/head";
 import Link from "next/link";
 
+import { ParsedUrlQuery } from "querystring";
+import client from "graphql/client";
+import { GET_POST_BY_SLUG } from "graphql/queries";
+
+import { Flex, Button } from "@chakra-ui/react";
+import { FaArrowCircleLeft } from "react-icons/fa";
+
+import { SocialShareButton } from "components/Buttons/Social";
+import { formattedBlogUrl } from "utils/formatted";
+
+import styles from './post.module.scss'
 interface PostProps {
   title: string
   body: {
     html: string
   }
   slug: string
+  imageFeature: {
+    url: string
+  }
   publishedAt: string
   createdBy: {
     name: string
@@ -26,21 +35,32 @@ interface IPost {
 
 export default function Post({ posts }: IPost) {
   return (
-    <main className={styles.container}>
-      <Link href="/blog">
-            <Button bg="orange.600" leftIcon={<FaArrowCircleLeft />} _hover={{ bg: "orange.800" }}>Voltar</Button>
-          </Link>
-      <article className={styles.post}>
-        <h1>{posts.title}</h1>
-        <Flex>
-          <span className={styles.author}>{posts.createdBy.name}</span>
-          <time>{posts.publishedAt}</time>
-        </Flex>
-        <div
-          className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: posts.body.html }} />
-      </article>
-    </main>
+    <>
+      <Head>
+        <title>{posts.title}</title>
+        <meta property="og:title" content={posts.title} />
+        <meta property="og.description" content={posts.title} />
+        <meta property="og:url" content={formattedBlogUrl(posts.slug)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={posts.imageFeature.url} />
+      </Head>
+      <main className={styles.container}>
+        <Link href="/blog">
+          <Button bg="orange.600" leftIcon={<FaArrowCircleLeft />} _hover={{ bg: "orange.800" }}>Voltar</Button>
+        </Link>
+        <article className={styles.post}>
+          <h1>{posts.title}</h1>
+          <Flex>
+            <span className={styles.author}>{posts.createdBy.name}</span>
+            <time>{posts.publishedAt}</time>
+          </Flex>
+          <div
+            className={styles.postContent}
+            dangerouslySetInnerHTML={{ __html: posts.body.html }} />
+        </article>
+        <SocialShareButton title={posts.title} slug={posts.slug} />
+      </main>
+    </>
   )
 }
 

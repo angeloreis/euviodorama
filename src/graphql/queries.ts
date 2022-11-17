@@ -24,6 +24,9 @@ export const GET_POST_BY_SLUG = gql`
       body {
         html
       }
+      imageFeature {
+        url
+      }
       slug
       publishedAt
       createdBy {
