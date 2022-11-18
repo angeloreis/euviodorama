@@ -13,6 +13,7 @@ import { ItemPost } from "components/Post/Item";
 import { CategoryProps, PostProps } from "types/api";
 import Link from "next/link";
 import { FaArrowCircleLeft } from "react-icons/fa";
+import { GetServerSideProps } from "next";
 
 interface BlogProps {
   posts: PostProps[]
@@ -28,7 +29,8 @@ export default function Blog({ posts, categories }: BlogProps) {
       width="100%"
       borderRadius="5px"
       margin="32px"
-      color='white'>
+      color='white'
+      height='calc(100vh - 5rem)'>
       <Flex>
         <Flex flexDir="column" width="100%" marginLeft="6px" marginTop="1rem" marginBottom="1rem" padding="1rem">
           <Flex flexDir="row" align="center" justify="space-between">
@@ -58,7 +60,7 @@ export default function Blog({ posts, categories }: BlogProps) {
               >
                 {
                   categories.map((category) => {
-                    return (
+                    return category.posts.length > 0 ? (
                       <>
                         <Link href={`/blog/category/${category.slug}`} key={category.name}>
                           <Button
@@ -77,7 +79,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                           </Button>
                         </Link>
                       </>
-                    )
+                    ) : (null)
                   })
                 }
               </Stack>
@@ -96,7 +98,7 @@ export default function Blog({ posts, categories }: BlogProps) {
   )
 }
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { posts } = await client.request(GET_POSTS)
   const { categories } = await client.request(GET_CATEGORIES)
 
