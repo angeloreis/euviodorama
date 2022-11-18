@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 export const GET_POSTS = gql`
   query getPosts {
-    posts {
+    posts(orderBy: publishedAt_DESC, stage: PUBLISHED) {
       id
       slug
       title
@@ -38,9 +38,12 @@ export const GET_POST_BY_SLUG = gql`
 
 export const GET_CATEGORIES = gql`
   query getCategories {
-    categories {
+    categories(stage: PUBLISHED) {
       name
       slug
+      posts {
+        slug
+      }
     }
   }
 `

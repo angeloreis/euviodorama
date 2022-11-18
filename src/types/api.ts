@@ -1,6 +1,11 @@
+export type ItemCountPostProps = {
+  slug: string
+}
+
 export type CategoryProps = {
   name: string
   slug: string
+  posts: ItemCountPostProps[]
 }
 
 export type PostProps = {
