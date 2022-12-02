@@ -12,7 +12,7 @@ export default function Home() {
       maxWidth="1120px"
       marginY="0"
       marginX={["1rem", "auto"]}
-      height='full'
+      height={['full','calc(100vh - 5rem)']}
       color="white">
       <Flex flexDir={["column", "row"]} marginX={["0.875rem", "auto"]} marginTop={['4rem', '5rem']}>
         <Flex as="section" maxWidth="600px" flexDir="column">
