@@ -37,7 +37,7 @@ export default function Category({ posts, name }: ICategoryProps) {
               <BreadcrumbLink href="/blog">Blog</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href={`/blog/category/${slug}`}>Categoria - {name}</BreadcrumbLink>
+              <BreadcrumbLink href={`/blog/category/${slug}`}>Categoria ➡️ {name}</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
           <Link href="/blog">
