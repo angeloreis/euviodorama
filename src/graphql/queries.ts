@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 export const GET_POSTS = gql`
   query getPosts {
-    posts(orderBy: publishedAt_DESC, stage: PUBLISHED) {
+    posts(orderBy: createdAt_DESC, stage: PUBLISHED) {
       id
       slug
       title
