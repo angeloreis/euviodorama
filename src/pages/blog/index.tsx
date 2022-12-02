@@ -76,7 +76,7 @@ export default function Blog({ posts, categories }: BlogProps) {
               px="2rem"
               colorScheme="orange"
               onClick={onOpen}
-              width={["128px","256px"]}
+              width={["100%","256px"]}
               leftIcon={<Icon as={FaBars} />}
             >
               Categorias
@@ -85,7 +85,7 @@ export default function Blog({ posts, categories }: BlogProps) {
             <Flex my="3.21rem" />
           )}
 
-          <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+          <Drawer isOpen={isOpen} placement={"right"} onClose={onClose}>
             <DrawerOverlay />
             <DrawerContent background="orange.600">
               <DrawerCloseButton />
