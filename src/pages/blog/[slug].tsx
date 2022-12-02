@@ -87,6 +87,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const { posts } = await client.request(GET_POST_BY_SLUG, variables)
 
+  if (!posts[0]) {
+    return {
+      redirect: {
+        destination: `/404`,
+        permanent: false
+      }
+    }
+  }
+
   const slugPost = {
     ...posts[0],
     publishedAt: new Date(posts[0].publishedAt).toLocaleDateString('pt-BR', {
