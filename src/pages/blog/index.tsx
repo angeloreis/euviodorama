@@ -101,7 +101,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                           color="white"
                         >
                           <Button
-                            bg="orange.600"
+                            bg="orange.400"
                             minW="8rem"
                             maxW={["100vw", "15rem"]}
                             width="100%"
