@@ -26,7 +26,7 @@ export default function Custom404() {
       <Flex>
         <Flex
           flexDir="column"
-          width="100%"
+          width={["100%","100vw"]}
           maxW="1240px"
           h="full"
           marginLeft="6px"
