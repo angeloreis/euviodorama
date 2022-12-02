@@ -30,7 +30,7 @@ export default function Blog({ posts, categories }: BlogProps) {
       borderRadius="5px"
       margin="32px"
       color='white'
-      height='calc(100vh - 5rem)'>
+      height='full'>
       <Flex>
         <Flex flexDir="column" width="100%" marginLeft="6px" marginTop="1rem" marginBottom="1rem" padding="1rem">
           <Flex flexDir="row" align="center" justify="space-between">
