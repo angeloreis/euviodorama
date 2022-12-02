@@ -76,7 +76,7 @@ export default function Blog({ posts, categories }: BlogProps) {
               px="2rem"
               colorScheme="orange"
               onClick={onOpen}
-              width={["100%","256px"]}
+              width={["100%", "256px"]}
               leftIcon={<Icon as={FaBars} />}
             >
               Categorias
