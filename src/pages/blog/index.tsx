@@ -31,6 +31,8 @@ interface BlogProps {
 export default function Blog({ posts, categories }: BlogProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const postMax = posts.length
+
   return (
     <Flex
       id="app-blog"
@@ -135,7 +137,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                   heading={heading}
                   url={imageFeature.url}
                 />
-                <Divider variant="solid" marginY="16px" />
+                {postMax-1 === index ? (<Flex my="1rem"></Flex>): <Divider variant="solid" marginY="16px" />}
               </>
             ))}
         </Flex>
