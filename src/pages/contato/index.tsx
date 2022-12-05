@@ -1,9 +1,8 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
 import Link from "next/link";
+import * as gtag from 'utils/gtag'
 
 export default function Contact() {
-  const gaEventTracker = useAnalyticsEventTracker('Contact Page')
   return (
     <Flex
       as="main"
@@ -49,14 +48,24 @@ export default function Contact() {
         <Text
         fontSize={["0.875rem", "1.65rem"]}>
         Segue ai 💜 {" "}
-          <Link href="https://instagram.com/euviodorama" onClick={() => gaEventTracker('click','Click to instagram user: Euviodorama')}>
+          <Link href="https://instagram.com/euviodorama" onClick={() => gtag.event({
+            action: 'click',
+            category: 'contact',
+            label: `User do contact via instagram and try follow account`,
+            value: `/contato`
+             })}>
             <a target="_blank">
               <strong>Eu vi o Dorama</strong>
             </a>
           </Link>
           <br />
           Temos um grupo no{" "}
-          <Link href="https://t.me/+A08gA8IGRHczY2Ex" onClick={() => gaEventTracker('click', 'Click to Enter on Group on Telegram: Euviodorama')}>
+          <Link href="https://t.me/+A08gA8IGRHczY2Ex" onClick={() => gtag.event({
+            action: 'click',
+            category: 'contact',
+            label: `User do contact via Telegram`,
+            value: `/contato`
+             })}>
             <a target="_blank">
               <strong>Telegram 📱</strong>
             </a>

@@ -3,18 +3,23 @@ import { ChakraProvider, Flex } from '@chakra-ui/react'
 import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import Head from 'next/head'
 import { Header } from 'components/Header'
-import ReactGA from 'react-ga'
 import { useEffect } from 'react'
-
-const TRACKING_ID = 'G-HQCEF7B9D1'
-
-ReactGA.initialize(TRACKING_ID)
+import { useRouter } from 'next/router'
+import * as gtag from 'utils/gtag'
+import { Analytics } from 'components/GoogleAnalytics'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  },[])
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete',handleRouteChange)
+    }
+  },[router.events])
 
   return (
     <>
@@ -30,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             color="blackAlpha.900">
             <Header />
             <Component {...pageProps} />
+            <Analytics />
             <Flex
               as="footer"
               flexDirection="column"

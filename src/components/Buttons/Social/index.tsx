@@ -3,6 +3,8 @@ import Link from "next/link";
 import { FaFacebook, FaTelegram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { formattedBlogUrl } from "utils/formatted";
 
+import * as gtag from 'utils/gtag'
+
 interface SocialShareButtonsProps {
   title: string
   slug: string
@@ -32,11 +34,19 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
     return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(sharedUrl)}`
   }
 
+  const handleEventGa = (social: string) => {
+    gtag.event({
+      action: 'click',
+      category: 'blog',
+      label: `Share post via ${social}`,
+      value: `Shared post via ${social}: /blog/${slug}` })
+  }
+
   return (
     <Box paddingY="6px">
       <Text>Compatilhar:</Text>
       <Flex gap="5px" flexDir={['column', 'row']}>
-        <Link href={getSocialLinkWhatsApp()} target="_blank">
+        <Link href={getSocialLinkWhatsApp()} target="_blank" onClick={() => handleEventGa('whastapp')}>
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaWhatsapp />}
@@ -46,7 +56,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "whatsapp.800"
             }}>WhatsApp</Button>
         </Link>
-        <Link href={getSocialLinkTelegram()} target="_blank">
+        <Link href={getSocialLinkTelegram()} target="_blank"  onClick={() => handleEventGa('telegram')}>
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaTelegram />}
@@ -56,7 +66,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "telegram.800"
             }}>Telegram</Button>
         </Link>
-        <Link href={getSocialLinkTwitter()} target="_blank">
+        <Link href={getSocialLinkTwitter()} target="_blank"  onClick={() => handleEventGa('twitter')}>
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaTwitter />}
@@ -66,7 +76,7 @@ export function SocialShareButton({ title, slug }: SocialShareButtonsProps) {
               background: "twitter.800"
             }}>Twitter</Button>
         </Link>
-        <Link href={getSocialLinkFacebook()} target="_blank">
+        <Link href={getSocialLinkFacebook()} target="_blank" onClick={() => handleEventGa('facebook')}>
           <Button
             size={["lg", "sm"]}
             leftIcon={<FaFacebook />}

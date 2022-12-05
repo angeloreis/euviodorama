@@ -6,14 +6,14 @@ import {
   BreadcrumbLink,
   Heading,
 } from "@chakra-ui/react";
-import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
+
+import * as gtag from 'utils/gtag'
 
 import Link from "next/link";
 
 import { FaArrowCircleLeft } from "react-icons/fa";
 
 export default function Custom404() {
-  const gaEventTracker = useAnalyticsEventTracker('404 Page')
   return (
     <Flex
       id="app-blog"
@@ -57,7 +57,7 @@ export default function Custom404() {
                 my="3rem"
                 leftIcon={<FaArrowCircleLeft />}
                 _hover={{ bg: "orange.800" }}
-                onClick={()=>gaEventTracker('click','Click to return do Home Page')}
+                onClick={()=>gtag.event({ action: 'click', category: '404', label: 'Click on button to back to go home page', value: 'backHomePage' })}
               >
                 Voltar
               </Button>

@@ -22,7 +22,8 @@ import { CategoryProps, PostProps } from "types/api";
 import Link from "next/link";
 import { FaArrowCircleLeft, FaBars } from "react-icons/fa";
 import { GetServerSideProps } from "next";
-import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
+
+import * as gtag from 'utils/gtag'
 
 interface BlogProps {
   posts: PostProps[];
@@ -31,15 +32,14 @@ interface BlogProps {
 
 export default function Blog({ posts, categories }: BlogProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const gaEventTracker = useAnalyticsEventTracker('Blog Page')
 
   const handleOpenMenu = () => {
-    gaEventTracker('click', 'Side Menu Category open')
+    gtag.event({ action: 'click', category: 'blog', label: 'Side Menu Category open', value: 'access' })
     onOpen()
   }
 
   const handleCloseMenu = () => {
-    gaEventTracker('click', 'Side Menu Category closed by user')
+    gtag.event({ action: 'click', category: 'blog', label: 'Side Menu Category closed by user', value: 'access' })
     onClose()
   }
 
@@ -79,7 +79,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                 bg="orange.600"
                 leftIcon={<FaArrowCircleLeft />}
                 _hover={{ bg: "orange.800" }}
-                onClick={()=>gaEventTracker('click','Go back to Home Page')}
+                onClick={() => gtag.event({ action: 'click', category: 'blog', label: 'Go back to home page', value: 'access' })}
               >
                 Voltar
               </Button>
@@ -114,8 +114,10 @@ export default function Blog({ posts, categories }: BlogProps) {
                           href={`/blog/category/${category.slug}`}
                           key={category.name}
                           color="white"
-                          onClick={()=>gaEventTracker('click',`Click to filter category ${category.name} use slug ${category.slug}`)}
-                        >
+                          onClick={() => gtag.event({ action: 'click',
+                           category: 'blog',
+                           label: `Click to filter category ${category.name} use slug ${category.slug}`,
+                           value: 'access' })} >
                           <Button
                             bg="orange.400"
                             minW="8rem"
@@ -151,12 +153,12 @@ export default function Blog({ posts, categories }: BlogProps) {
                   heading={heading}
                   url={imageFeature.url}
                 />
-                {postMax-1 === index ? (<Flex my="1rem"></Flex>): <Divider variant="solid" marginY="16px" />}
+                {postMax - 1 === index ? (<Flex my="1rem"></Flex>) : <Divider variant="solid" marginY="16px" />}
               </>
             ))}
         </Flex>
       </Flex>
-    </Flex>
+    </Flex >
   );
 }
 

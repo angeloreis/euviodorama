@@ -1,5 +1,5 @@
 import { Link } from "@chakra-ui/react";
-import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
+import * as gtag from 'utils/gtag'
 
 interface MenuItemProps {
   url: string;
@@ -8,7 +8,6 @@ interface MenuItemProps {
 }
 
 export const MenuItem = ({ url, text, fromDesktop = false }: MenuItemProps) => {
-  const gaEventTracker = useAnalyticsEventTracker("Side Menu Navigation");
 
   const themeHover = {
     borderRadius: "5px",
@@ -23,7 +22,7 @@ export const MenuItem = ({ url, text, fromDesktop = false }: MenuItemProps) => {
       href={url}
       color="white"
       _hover={themeHover}
-      onClick={()=>gaEventTracker(`Click to go ${url}`)}
+      onClick={()=>gtag.event({ action: 'click', category: 'Menu', label: 'Side Menu item redirect', value: `redirect to ${url}` })}
     >
       {text}
     </Link>

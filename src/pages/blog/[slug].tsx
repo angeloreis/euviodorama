@@ -12,6 +12,8 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import { SocialShareButton } from "components/Buttons/Social";
 import { formattedBlogUrl } from "utils/formatted";
 
+import * as gtag from 'utils/gtag'
+
 import styles from './post.module.scss'
 interface PostProps {
   title: string
@@ -45,7 +47,7 @@ export default function Post({ posts }: IPost) {
         <meta property="og:image" content={posts.imageFeature.url} />
       </Head>
       <main className={styles.container}>
-        <Link href="/blog">
+        <Link href="/blog" onClick={()=>gtag.event({ action: 'click', category: 'blog', label: 'Go back to blog page', value: `blog/${posts.slug} to blog page` })}>
           <Button bg="orange.600" leftIcon={<FaArrowCircleLeft />} _hover={{ bg: "orange.800" }}>Voltar</Button>
         </Link>
         <article className={styles.post}>
