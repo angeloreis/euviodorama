@@ -3,8 +3,14 @@ import { ChakraProvider, Flex } from '@chakra-ui/react'
 import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import Head from 'next/head'
 import { Header } from 'components/Header'
+import ReactGA from 'react-ga'
+
+const TRACKING_ID = 'G-HQCEF7B9D1'
+
+ReactGA.initialize(TRACKING_ID)
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   return (
     <>
       <NextAuthProvider session={pageProps.session}>
