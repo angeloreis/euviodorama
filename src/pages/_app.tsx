@@ -4,12 +4,17 @@ import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import Head from 'next/head'
 import { Header } from 'components/Header'
 import ReactGA from 'react-ga'
+import { useEffect } from 'react'
 
 const TRACKING_ID = 'G-HQCEF7B9D1'
 
 ReactGA.initialize(TRACKING_ID)
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  },[])
 
   return (
     <>
