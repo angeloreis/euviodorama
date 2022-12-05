@@ -1,19 +1,31 @@
-import { Link } from "@chakra-ui/react"
+import { Link } from "@chakra-ui/react";
+import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
 
 interface MenuItemProps {
-  url: string
-  text: string
-  fromDesktop?: boolean
+  url: string;
+  text: string;
+  fromDesktop?: boolean;
 }
 
 export const MenuItem = ({ url, text, fromDesktop = false }: MenuItemProps) => {
+  const gaEventTracker = useAnalyticsEventTracker("Side Menu Navigation");
+
   const themeHover = {
-    borderRadius: '5px',
-    background: `${fromDesktop ? 'orange.500' : 'black'}`,
-    color: `${fromDesktop ? 'white' : 'orange.500'}`
-  }
+    borderRadius: "5px",
+    background: `${fromDesktop ? "orange.500" : "black"}`,
+    color: `${fromDesktop ? "white" : "orange.500"}`,
+  };
 
   return (
-    <Link padding="16px" marginY='5px' href={url} color="white" _hover={themeHover}>{text}</Link>
-  )
-}
+    <Link
+      padding="16px"
+      marginY="5px"
+      href={url}
+      color="white"
+      _hover={themeHover}
+      onClick={()=>gaEventTracker(`Click to go ${url}`)}
+    >
+      {text}
+    </Link>
+  );
+};

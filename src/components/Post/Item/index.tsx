@@ -1,4 +1,5 @@
 import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
 import Link from "next/link";
 
 interface ItemPostProps {
@@ -9,8 +10,9 @@ interface ItemPostProps {
 }
 
 export function ItemPost({ slug, url, title, heading }: ItemPostProps) {
+  const gaEventTracker = useAnalyticsEventTracker('List of posts component')
   return (
-    <Link href={`/blog/${slug}`} key={slug}>
+    <Link href={`/blog/${slug}`} key={slug} onClick={()=>gaEventTracker('click',`Access post ${title}, use url /blog/${slug}`)}>
       <Flex flexDir="column">
         <a key={slug}>
           <Flex

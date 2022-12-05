@@ -22,6 +22,7 @@ import { CategoryProps, PostProps } from "types/api";
 import Link from "next/link";
 import { FaArrowCircleLeft, FaBars } from "react-icons/fa";
 import { GetServerSideProps } from "next";
+import { useAnalyticsEventTracker } from "hooks/useAnalyticsEventTracker";
 
 interface BlogProps {
   posts: PostProps[];
@@ -30,6 +31,17 @@ interface BlogProps {
 
 export default function Blog({ posts, categories }: BlogProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const gaEventTracker = useAnalyticsEventTracker('Blog Page')
+
+  const handleOpenMenu = () => {
+    gaEventTracker('click', 'Side Menu Category open')
+    onOpen()
+  }
+
+  const handleCloseMenu = () => {
+    gaEventTracker('click', 'Side Menu Category closed by user')
+    onClose()
+  }
 
   const postMax = posts.length
 
@@ -67,6 +79,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                 bg="orange.600"
                 leftIcon={<FaArrowCircleLeft />}
                 _hover={{ bg: "orange.800" }}
+                onClick={()=>gaEventTracker('click','Go back to Home Page')}
               >
                 Voltar
               </Button>
@@ -77,7 +90,7 @@ export default function Blog({ posts, categories }: BlogProps) {
               my="2rem"
               px="2rem"
               colorScheme="orange"
-              onClick={onOpen}
+              onClick={handleOpenMenu}
               width={["100%", "256px"]}
               leftIcon={<Icon as={FaBars} />}
             >
@@ -87,7 +100,7 @@ export default function Blog({ posts, categories }: BlogProps) {
             <Flex my="3.21rem" />
           )}
 
-          <Drawer isOpen={isOpen} placement={"right"} onClose={onClose}>
+          <Drawer isOpen={isOpen} placement={"right"} onClose={handleCloseMenu}>
             <DrawerOverlay />
             <DrawerContent background="orange.600">
               <DrawerCloseButton />
@@ -101,6 +114,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                           href={`/blog/category/${category.slug}`}
                           key={category.name}
                           color="white"
+                          onClick={()=>gaEventTracker('click',`Click to filter category ${category.name} use slug ${category.slug}`)}
                         >
                           <Button
                             bg="orange.400"
