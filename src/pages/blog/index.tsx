@@ -151,7 +151,7 @@ export default function Blog({ posts, categories }: BlogProps) {
                   slug={slug}
                   title={title}
                   heading={heading}
-                  url={imageFeature.url}
+                  url={imageFeature.url || "img/image-not-found.png"}
                 />
                 {postMax - 1 === index ? (<Flex my="1rem"></Flex>) : <Divider variant="solid" marginY="16px" />}
               </>
