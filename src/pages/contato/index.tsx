@@ -1,13 +1,12 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex, Stack, Image, Text, Heading } from "@chakra-ui/react";
 import Link from "next/link";
+import { FaFacebook, FaInstagram, FaTelegram, FaTiktok, FaYoutube } from "react-icons/fa";
 import * as gtag from 'utils/gtag'
 
 export default function Contact() {
   return (
     <Flex
-      as="main"
       display="flex"
-      flexDir={["column", "row"]}
       alignItems="center"
       justifyContent={["center", "space-between"]}
       w="100%"
@@ -18,60 +17,111 @@ export default function Contact() {
       height="calc(100vh - 5rem)"
       color="white"
     >
-      <Flex as="section" maxWidth="600px" flexDir="column">
-        <Heading
-          fontSize={["1.25rem", "4.5rem"]}
-          lineHeight={["1.25rem", "4.5rem"]}
-          fontWeight="extrabold"
-          marginTop={["0.75rem", "2.5rem"]}
-        >
-          Meu contatos são esses aqui:
+
+      <Stack
+        w="100%"
+        maxWidth="1120px">
+
+        <Image src="./img/hero.svg" height={["64px", "128px"]} />
+
+        <Text textAlign={'center'}>
+          📌 Dicas, resenhas, notícias, cenas e onde assistir.
+        </Text>
+        <Heading textAlign={'center'} pb='8'>
+          ⚠️ CONTÉM SPOILERS ⚠️
         </Heading>
-        <Text
-          fontSize={["0.875rem", "1.25rem"]}
-          lineHeight="1.25rem"
-          marginY={["1rem", "1.5rem"]}
-        >
-          Pode entrar em contato, seja para parcerias, collab
-          <br />e até um bate-papo sobre o último ep. lançado dos doramas que
-          estou assistindo!
-        </Text>
-      </Flex>
-      <Flex as="section" flexDir="column">
-        <Text
-          fontSize={["0.875rem", "2.25rem"]}
-          lineHeight={["1.25rem","2rem"]}
-          marginY={["1rem", "1.5rem"]}
-        >
-          Já segue meu perfil no instagram?
-        </Text>
-        <Text
-        fontSize={["0.875rem", "1.65rem"]}>
-        Segue ai 💜 {" "}
-          <Link href="https://instagram.com/euviodorama" onClick={() => gtag.event({
-            action: 'click',
-            category: 'contact',
-            label: `User do contact via instagram and try follow account`,
-            value: `/contato`
-             })}>
-            <a target="_blank">
-              <strong>Eu vi o Dorama</strong>
-            </a>
-          </Link>
-          <br />
-          Temos um grupo no{" "}
-          <Link href="https://t.me/+A08gA8IGRHczY2Ex" onClick={() => gtag.event({
-            action: 'click',
-            category: 'contact',
-            label: `User do contact via Telegram`,
-            value: `/contato`
-             })}>
-            <a target="_blank">
-              <strong>Telegram 📱</strong>
-            </a>
-          </Link>
-        </Text>
-      </Flex>
+        <Link href="https://instagram.com/euviodorama" target="_blank" onClick={() => gtag.event({
+          action: 'click',
+          category: 'contact',
+          label: `User do contact via instagram and try follow account`,
+          value: `/contato`
+        })}>
+          <Button
+            height='52px'
+            leftIcon={<FaInstagram size={24} />}
+            background="white"
+            color="black"
+            border={'1px solid #ffffff'}
+            _hover={{
+              background: "orange.500",
+              color: "white"
+            }}>Instagram</Button>
+        </Link>
+
+        <Link href="https://www.tiktok.com/@euviodorama" target="_blank" onClick={() => gtag.event({
+          action: 'click',
+          category: 'contact',
+          label: `User enter on Toktok account page`,
+          value: `/contato`
+        })}>
+          <Button
+            height='52px'
+            leftIcon={<FaTiktok size={24} />}
+            background="white"
+            color="black"
+            border={'1px solid #ffffff'}
+            _hover={{
+              background: "orange.500",
+              color: "white"
+            }}>Tiktok</Button>
+        </Link>
+
+        <Link href="https://www.facebook.com/euviodorama/" target="_blank" onClick={() => gtag.event({
+          action: 'click',
+          category: 'contact',
+          label: `User enter on facebook page`,
+          value: `/contato`
+        })}>
+          <Button
+            height='52px'
+            leftIcon={<FaFacebook size={24} />}
+            background="white"
+            color="black"
+            border={'1px solid #ffffff'}
+            _hover={{
+              background: "orange.500",
+              color: "white"
+            }}>Facebook</Button>
+        </Link>
+
+        <Link href="https://t.me/+A08gA8IGRHczY2Ex" target="_blank" onClick={() => gtag.event({
+          action: 'click',
+          category: 'contact',
+          label: `User enter on channel of telegram`,
+          value: `/contato`
+        })}>
+          <Button
+            height='52px'
+            leftIcon={<FaTelegram size={24} />}
+            background="white"
+            color="black"
+            border={'1px solid #ffffff'}
+            _hover={{
+              background: "orange.500",
+              color: "white"
+            }}>Telegram</Button>
+        </Link>
+
+        <Link href="https://www.youtube.com/@euviodorama" target="_blank" onClick={() => gtag.event({
+          action: 'click',
+          category: 'contact',
+          label: `User enter on Youtube channel page`,
+          value: `/contato`
+        })}>
+          <Button
+            height='52px'
+            leftIcon={<FaYoutube size={24} />}
+            background="white"
+            color="black"
+            border={'1px solid #ffffff'}
+            _hover={{
+              background: "orange.500",
+              color: "white"
+            }}>Youtube</Button>
+        </Link>
+      </Stack>
+
+
     </Flex>
   );
 }
