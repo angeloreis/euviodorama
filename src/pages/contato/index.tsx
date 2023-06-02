@@ -1,7 +1,14 @@
 import { Button, Flex, Stack, Image, Text, Heading } from "@chakra-ui/react";
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTelegram, FaTiktok, FaYoutube } from "react-icons/fa";
-import * as gtag from 'utils/gtag'
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTelegram,
+  FaTiktok,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
+import * as gtag from "utils/gtag";
 
 export default function Contact() {
   return (
@@ -17,111 +24,178 @@ export default function Contact() {
       height="calc(100vh - 5rem)"
       color="white"
     >
-
-      <Stack
-        w="100%"
-        maxWidth="1120px">
-
+      <Stack w="100%" maxWidth="1120px">
         <Image src="./img/hero.svg" height={["64px", "128px"]} />
 
-        <Text textAlign={'center'}>
+        <Text textAlign={"center"}>
           📌 Dicas, resenhas, notícias, cenas e onde assistir.
         </Text>
-        <Heading textAlign={'center'} pb='8'>
+        <Heading textAlign={"center"} pb="8">
           ⚠️ CONTÉM SPOILERS ⚠️
         </Heading>
-        <Link href="https://instagram.com/euviodorama" target="_blank" onClick={() => gtag.event({
-          action: 'click',
-          category: 'contact',
-          label: `User do contact via instagram and try follow account`,
-          value: `/contato`
-        })}>
+        <Link
+          href="https://instagram.com/euviodorama"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User do contact via instagram and try follow account`,
+              value: `/contato`,
+            })
+          }
+        >
           <Button
-            height='52px'
+            height="52px"
             leftIcon={<FaInstagram size={24} />}
             background="white"
             color="black"
-            border={'1px solid #ffffff'}
+            border={"1px solid #ffffff"}
             _hover={{
               background: "orange.500",
-              color: "white"
-            }}>Instagram</Button>
+              color: "white",
+            }}
+          >
+            Instagram
+          </Button>
         </Link>
 
-        <Link href="https://www.tiktok.com/@euviodorama" target="_blank" onClick={() => gtag.event({
-          action: 'click',
-          category: 'contact',
-          label: `User enter on Toktok account page`,
-          value: `/contato`
-        })}>
+        <Link
+          href="https://www.tiktok.com/@euviodorama"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User enter on Toktok account page`,
+              value: `/contato`,
+            })
+          }
+        >
           <Button
-            height='52px'
+            height="52px"
             leftIcon={<FaTiktok size={24} />}
             background="white"
             color="black"
-            border={'1px solid #ffffff'}
+            border={"1px solid #ffffff"}
             _hover={{
               background: "orange.500",
-              color: "white"
-            }}>Tiktok</Button>
+              color: "white",
+            }}
+          >
+            Tiktok
+          </Button>
         </Link>
 
-        <Link href="https://www.facebook.com/euviodorama/" target="_blank" onClick={() => gtag.event({
-          action: 'click',
-          category: 'contact',
-          label: `User enter on facebook page`,
-          value: `/contato`
-        })}>
+        <Link
+          href="https://www.facebook.com/euviodorama/"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User enter on facebook page`,
+              value: `/contato`,
+            })
+          }
+        >
           <Button
-            height='52px'
+            height="52px"
             leftIcon={<FaFacebook size={24} />}
             background="white"
             color="black"
-            border={'1px solid #ffffff'}
+            border={"1px solid #ffffff"}
             _hover={{
               background: "orange.500",
-              color: "white"
-            }}>Facebook</Button>
+              color: "white",
+            }}
+          >
+            Facebook
+          </Button>
         </Link>
 
-        <Link href="https://t.me/+A08gA8IGRHczY2Ex" target="_blank" onClick={() => gtag.event({
-          action: 'click',
-          category: 'contact',
-          label: `User enter on channel of telegram`,
-          value: `/contato`
-        })}>
+        <Link
+          href="https://t.me/+A08gA8IGRHczY2Ex"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User enter on channel of telegram`,
+              value: `/contato`,
+            })
+          }
+        >
           <Button
-            height='52px'
+            height="52px"
             leftIcon={<FaTelegram size={24} />}
             background="white"
             color="black"
-            border={'1px solid #ffffff'}
+            border={"1px solid #ffffff"}
             _hover={{
               background: "orange.500",
-              color: "white"
-            }}>Telegram</Button>
+              color: "white",
+            }}
+          >
+            Telegram
+          </Button>
         </Link>
 
-        <Link href="https://www.youtube.com/@euviodorama" target="_blank" onClick={() => gtag.event({
-          action: 'click',
-          category: 'contact',
-          label: `User enter on Youtube channel page`,
-          value: `/contato`
-        })}>
+        <Link
+          href="https://www.youtube.com/@euviodorama"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User enter on Youtube channel page`,
+              value: `/contato`,
+            })
+          }
+        >
           <Button
-            height='52px'
+            height="52px"
             leftIcon={<FaYoutube size={24} />}
             background="white"
             color="black"
-            border={'1px solid #ffffff'}
+            border={"1px solid #ffffff"}
             _hover={{
               background: "orange.500",
-              color: "white"
-            }}>Youtube</Button>
+              color: "white",
+            }}
+          >
+            Youtube
+          </Button>
+        </Link>
+
+        <Link
+          href="https://chat.whatsapp.com/Dhj8Iyev0hwFMqOfG18Bvt"
+          target="_blank"
+          onClick={() =>
+            gtag.event({
+              action: "click",
+              category: "contact",
+              label: `User enter on Group of WhatsApp`,
+              value: `/contato`,
+            })
+          }
+        >
+          <Button
+            height="52px"
+            leftIcon={<FaWhatsapp size={24} />}
+            background="white"
+            color="black"
+            border={"1px solid #ffffff"}
+            mb="4rem"
+            _hover={{
+              background: "orange.500",
+              color: "white",
+            }}
+          >
+            Grupo do WhatsApp
+          </Button>
         </Link>
       </Stack>
-
-
     </Flex>
   );
 }
