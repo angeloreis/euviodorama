@@ -1,42 +1,21 @@
-import { Stack, HStack, Text } from "@chakra-ui/react";
-import { PaginationItem } from "./PaginationItem";
+import { Box, Button, HStack, Stack } from "@chakra-ui/react";
+import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 
 interface PaginationProps {
-  totalCountOfRegisters: number;
-  registersPerPage?: number;
-  currentPage?: number;
-  onPageChange: (page: number) => void;
-}
-
-const siblingsCount = 1;
-
-function generatePagesArray(from: number, to: number) {
-  return [...new Array(to - from)]
-    .map((_, index) => from + index + 1)
-    .filter(page => page > 0);
+  nextPage(): void;
+  previousPage(): void;
+  pageSize: number;
+  length: number;
+  actualPage: number;
 }
 
 export function Pagination({
-  totalCountOfRegisters,
-  registersPerPage = 10,
-  currentPage = 1,
-  onPageChange,
+  nextPage,
+  previousPage,
+  pageSize,
+  length,
+  actualPage,
 }: PaginationProps) {
-  const lastPage = Math.floor(totalCountOfRegisters / registersPerPage);
-
-  const previusPages =
-    currentPage > 1
-      ? generatePagesArray(currentPage - 1 - siblingsCount, currentPage - 1)
-      : [];
-
-  const nextPages =
-    currentPage < lastPage
-      ? generatePagesArray(
-          currentPage,
-          Math.min(currentPage + siblingsCount, lastPage)
-        )
-      : [];
-
   return (
     <Stack
       direction={["column", "row"]}
@@ -46,51 +25,30 @@ export function Pagination({
       spacing="6"
     >
       <HStack spacing="2">
-        {currentPage > 1 + siblingsCount && (
-          <>
-            <PaginationItem onPageChange={onPageChange} number={1} />
-            {currentPage > 2 + siblingsCount && (
-              <Text color="gray.300" w="8" textAlign="center">
-                ...
-              </Text>
-            )}
-          </>
-        )}
+        <Box>
+          <Button
+            onClick={previousPage}
+            mr="1rem"
+            bg="orange.800"
+            _hover={{ bg: "orange.900" }}
+            leftIcon={<FaArrowCircleLeft />}
+          >
+            Anterior
+          </Button>
+          <Button
+            onClick={nextPage}
+            bg="orange.800"
+            _hover={{ bg: "orange.900" }}
+            rightIcon={<FaArrowCircleRight />}
+          >
+            Próximo
+          </Button>
+        </Box>
 
-        {previusPages.length > 0 &&
-          previusPages.map(page => (
-            <PaginationItem
-              onPageChange={onPageChange}
-              key={page}
-              number={page}
-            />
-          ))}
-
-        <PaginationItem
-          onPageChange={onPageChange}
-          number={currentPage}
-          isCurrent
-        />
-
-        {nextPages.length > 0 &&
-          nextPages.map(page => (
-            <PaginationItem
-              onPageChange={onPageChange}
-              key={page}
-              number={page}
-            />
-          ))}
-
-        {currentPage + siblingsCount - lastPage && (
-          <>
-            {currentPage + 1 + siblingsCount < lastPage && (
-              <Text color="gray.300" w="8" textAlign="center">
-                ...
-              </Text>
-            )}
-            <PaginationItem onPageChange={onPageChange} number={lastPage} />
-          </>
-        )}
+        <Box fontSize='1rem'>
+          {Math.min(1 + pageSize * (actualPage - 1), length)}-
+          {Math.min(actualPage * pageSize, length)} de {length}
+        </Box>
       </HStack>
     </Stack>
   );
