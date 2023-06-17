@@ -16,25 +16,57 @@ import { GetServerSideProps } from "next";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Pagination } from "components/Pagination";
 
 interface ICategoryProps {
   posts: PostProps[];
   name: string;
 }
 
+const MAX_POST_PER_PAGE = 10;
+
 export default function Category({ posts, name }: ICategoryProps) {
   const router = useRouter();
   const { slug } = router.query;
+
+  const [actualPage, setActualPage] = useState(1);
+  const [actualPosts, setActualPosts] = useState<Array<PostProps>>([]);
+
+  const paginate = (
+    array: Array<any>,
+    page_size: number,
+    page_number: number
+  ) => array.slice((page_number - 1) * page_size, page_number * page_size);
+
+  const nextPage = () => {
+    if (actualPage < Math.ceil(posts.length / MAX_POST_PER_PAGE)) {
+      setActualPosts(paginate(posts, MAX_POST_PER_PAGE, actualPage + 1));
+      setActualPage(actualPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (actualPage > 1) {
+      setActualPosts(paginate(posts, MAX_POST_PER_PAGE, actualPage - 1));
+      setActualPage(actualPage - 1);
+    }
+  };
+
+  useEffect(() => {
+    setActualPosts(posts.slice(0, MAX_POST_PER_PAGE));
+  }, []);
+
   return (
     <Flex
       id="app-blog"
       maxWidth="980px"
       minWidth="319px"
       width="100%"
-      height="calc(100vh - 5rem)"
       borderRadius="5px"
       margin="32px"
       color="white"
+      height="full"
     >
       <Flex
         flexDir="column"
@@ -73,7 +105,7 @@ export default function Category({ posts, name }: ICategoryProps) {
             </Button>
           </Link>
         </Flex>
-        {posts && posts.length !== 0 ? (
+        {actualPosts && actualPosts.length !== 0 ? (
           posts.map(({ slug, title, heading, imageFeature }, index) => (
             <>
               <ItemPost
@@ -89,6 +121,15 @@ export default function Category({ posts, name }: ICategoryProps) {
         ) : (
           <Heading>Nenhum post relacionado a esta categoria...</Heading>
         )}
+
+        <Pagination
+          actualPage={actualPage}
+          length={posts.length}
+          nextPage={nextPage}
+          pageSize={MAX_POST_PER_PAGE}
+          previousPage={previousPage}
+          key="Pagination-01"
+        />
       </Flex>
     </Flex>
   );

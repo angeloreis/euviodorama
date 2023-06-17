@@ -23,27 +23,67 @@ import Link from "next/link";
 import { FaArrowCircleLeft, FaBars } from "react-icons/fa";
 import { GetServerSideProps } from "next";
 
-import * as gtag from 'utils/gtag'
+import * as gtag from "utils/gtag";
+import { Pagination } from "components/Pagination";
+import { useEffect, useState } from "react";
 
 interface BlogProps {
   posts: PostProps[];
   categories: CategoryProps[];
 }
 
+const MAX_POST_PER_PAGE = 10
+
 export default function Blog({ posts, categories }: BlogProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [actualPage, setActualPage] = useState(1);
+  const [actualPosts, setActualPosts] = useState<Array<PostProps>>([])
+
+
+
+  const paginate = (
+    array: Array<any>,
+    page_size: number,
+    page_number: number
+  ) => array.slice((page_number - 1) * page_size, page_number * page_size);
+
+  const nextPage = () => {
+    if (actualPage < Math.ceil(posts.length / MAX_POST_PER_PAGE)) {
+      setActualPosts(paginate(posts, MAX_POST_PER_PAGE, actualPage + 1))
+      setActualPage(actualPage + 1)
+    }
+  }
+
+  const previousPage = () => {
+    if (actualPage > 1) {
+      setActualPosts(paginate(posts, MAX_POST_PER_PAGE, actualPage - 1))
+      setActualPage(actualPage - 1)
+    }
+  }
 
   const handleOpenMenu = () => {
-    gtag.event({ action: 'click', category: 'blog', label: 'Side Menu Category open', value: 'access' })
-    onOpen()
-  }
+    gtag.event({
+      action: "click",
+      category: "blog",
+      label: "Side Menu Category open",
+      value: "access",
+    });
+    onOpen();
+  };
 
   const handleCloseMenu = () => {
-    gtag.event({ action: 'click', category: 'blog', label: 'Side Menu Category closed by user', value: 'access' })
-    onClose()
-  }
+    gtag.event({
+      action: "click",
+      category: "blog",
+      label: "Side Menu Category closed by user",
+      value: "access",
+    });
+    onClose();
+  };
 
-  const postMax = posts.length
+  useEffect(() => {
+    setActualPosts(posts.slice(0,MAX_POST_PER_PAGE))
+  },[])
 
   return (
     <Flex
@@ -79,7 +119,14 @@ export default function Blog({ posts, categories }: BlogProps) {
                 bg="orange.600"
                 leftIcon={<FaArrowCircleLeft />}
                 _hover={{ bg: "orange.800" }}
-                onClick={() => gtag.event({ action: 'click', category: 'blog', label: 'Go back to home page', value: 'access' })}
+                onClick={() =>
+                  gtag.event({
+                    action: "click",
+                    category: "blog",
+                    label: "Go back to home page",
+                    value: "access",
+                  })
+                }
               >
                 Voltar
               </Button>
@@ -114,10 +161,15 @@ export default function Blog({ posts, categories }: BlogProps) {
                           href={`/blog/category/${category.slug}`}
                           key={category.name}
                           color="white"
-                          onClick={() => gtag.event({ action: 'click',
-                           category: 'blog',
-                           label: `Click to filter category ${category.name} use slug ${category.slug}`,
-                           value: 'access' })} >
+                          onClick={() =>
+                            gtag.event({
+                              action: "click",
+                              category: "blog",
+                              label: `Click to filter category ${category.name} use slug ${category.slug}`,
+                              value: "access",
+                            })
+                          }
+                        >
                           <Button
                             bg="orange.400"
                             minW="8rem"
@@ -143,8 +195,8 @@ export default function Blog({ posts, categories }: BlogProps) {
             </DrawerContent>
           </Drawer>
 
-          {posts &&
-            posts.map(({ slug, title, heading, imageFeature }, index) => (
+          {actualPosts &&
+            actualPosts.map(({ slug, title, heading, imageFeature }, index) => (
               <>
                 <ItemPost
                   key={index}
@@ -153,12 +205,25 @@ export default function Blog({ posts, categories }: BlogProps) {
                   heading={heading}
                   url={imageFeature.url || "img/image-not-found.png"}
                 />
-                {postMax - 1 === index ? (<Flex my="1rem"></Flex>) : <Divider variant="solid" marginY="16px" />}
+                {actualPosts.length - 1 === index ? (
+                  <Flex my="1rem"></Flex>
+                ) : (
+                  <Divider variant="solid" marginY="16px" />
+                )}
               </>
             ))}
+
+          <Pagination
+            actualPage={actualPage}
+            length={posts.length}
+            nextPage={nextPage}
+            pageSize={MAX_POST_PER_PAGE}
+            previousPage={previousPage}
+            key='Pagination-01'
+          />
         </Flex>
       </Flex>
-    </Flex >
+    </Flex>
   );
 }
 
