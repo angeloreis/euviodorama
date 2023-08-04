@@ -3,14 +3,15 @@ import { gql } from "graphql-request";
 export const GET_POSTS = gql`
   query getPosts {
     posts(
-      orderBy: createdAt_DESC
-      last: 10000
+      orderBy: publishedAt_DESC
       where: { publishOnSite: true }
+      first: 1000000
     ) {
       id
       slug
       title
       heading
+      createdAt
       imageFeature {
         url
       }
