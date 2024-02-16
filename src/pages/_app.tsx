@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               w="100%"
               color="white"
               background="orange.700">
-              <div>Angelo Reis &copy; Todos os direitos reservados - 2009/2022</div>
+              <div>Angelo Reis &copy; Todos os direitos reservados - 2009/2024</div>
             </Flex>
           </Flex>
         </ChakraProvider>
